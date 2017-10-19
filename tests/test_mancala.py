@@ -36,3 +36,9 @@ def test_game_is_not_won():
     my_game = solitaire_mancala.SolitaireMancala()
     my_game.set_board(board1)
     assert not my_game.is_game_won()
+
+def test_game_is_won():
+    board2 = [23, 0, 0, 0, 0, 0, 0]
+    my_game = solitaire_mancala.SolitaireMancala()
+    my_game.set_board(board2)
+    assert my_game.is_game_won()
