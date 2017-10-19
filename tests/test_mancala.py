@@ -1,5 +1,4 @@
 # test Mancala game
-import pytest
 import solitaire_mancala
 
 def test_init():
@@ -42,3 +41,6 @@ def test_game_is_won():
     my_game = solitaire_mancala.SolitaireMancala()
     my_game.set_board(board2)
     assert my_game.is_game_won()
+
+def test_apply_move():
+    pass
