@@ -26,15 +26,15 @@ class SolitaireMancala:
         """
         for i in range(1,7):
             self.board.append(configuration[i])
-        
+        self.board.reverse()
         
     def __str__(self):
         """
         Return string representation for Mancala board
         """
-        board = self.board
-        board.reverse()
-        return str(board)
+        # board = self.board
+        # board.reverse()
+        return str(self.board)
     
     def get_num_seeds(self, house_num):
         """
@@ -57,7 +57,7 @@ class SolitaireMancala:
         """
         Check whether a given move is legal
         """
-        return True
+        return self.get_num_seeds(house_num) == house_num
 
     
     def apply_move(self, house_num):
