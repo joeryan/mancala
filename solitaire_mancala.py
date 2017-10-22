@@ -65,7 +65,9 @@ class SolitaireMancala(object):
         Move all of the stones from house to lower/left houses
         Last seed must be played in the store (house zero)
         """
-        pass
+        for i in range(-(house_num),0,):
+            self.board[i]+=1
+        self.board[-(house_num+1)] = 0
 
     def choose_move(self):
         """
