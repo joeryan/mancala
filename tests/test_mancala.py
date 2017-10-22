@@ -41,4 +41,6 @@ def test_game_is_won():
     assert my_game.is_game_won()
 
 def test_apply_move():
-    pass
+    game = game1()
+    game.apply_move(3)
+    assert str(game) == '[0, 0, 0, 0, 2, 2, 1]'
