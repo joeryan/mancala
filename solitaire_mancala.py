@@ -24,25 +24,24 @@ class SolitaireMancala(object):
         house zero corresponds to the store and is on right
         houses are number in ascending order from right to left
         """
-        for i in range(1, 7):
+        configuration.reverse()
+        self.board = []
+        for i in range(0, 7):
             self.board.append(configuration[i])
-        self.board.reverse()
 
     def __str__(self):
         """
         Return string representation for Mancala board
         """
-        # board = self.board
-        # board.reverse()
+        board = self.board
+        board.reverse()
         return str(self.board)
 
     def get_num_seeds(self, house_num):
         """
         Return the number of seeds in given house on board
         """
-        board = self.board
-        board.reverse()
-        return board[house_num]
+        return self.board[house_num]
 
     def is_game_won(self):
         """
@@ -65,9 +64,9 @@ class SolitaireMancala(object):
         Move all of the stones from house to lower/left houses
         Last seed must be played in the store (house zero)
         """
-        for i in range(-(house_num),0,):
+        for i in range(0, house_num):
             self.board[i]+=1
-        self.board[-(house_num+1)] = 0
+        self.board[house_num] = 0
 
     def choose_move(self):
         """
@@ -76,8 +75,6 @@ class SolitaireMancala(object):
         Note that using a longer legal move would make smaller illegal
         If no legal move, return house zero
         """
-        board = self.board
-        board.reverse()
         for i in range(1,len(self.board)):
             if self.board[i] == i:
                 return i
@@ -90,5 +87,11 @@ class SolitaireMancala(object):
         when given a choice of legal moves
         Not used in GUI version, only for machine testing
         """
-        return []
+        moves = []
+        move = self.choose_move()
+        while move != 0:
+            moves.append(move)
+            self.apply_move(move)
+            move = self.choose_move()
+        return moves
  

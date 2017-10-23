@@ -4,7 +4,7 @@ import solitaire_mancala
 
 @pytest.fixture
 def game1():
-    board1 = [0, 1, 1, 3, 0, 0, 0]
+    board1 = [0, 0, 0, 3, 1, 1, 0]
     my_game = solitaire_mancala.SolitaireMancala()
     my_game.set_board(board1)
     return my_game
@@ -35,7 +35,7 @@ def test_game_is_not_won():
     assert not game.is_game_won()
 
 def test_game_is_won():
-    board = [23, 0, 0, 0, 0, 0, 0]
+    board = [0, 0, 0, 0, 0, 0, 23]
     my_game = solitaire_mancala.SolitaireMancala()
     my_game.set_board(board)
     assert my_game.is_game_won()
@@ -45,14 +45,29 @@ def test_apply_move():
     game.apply_move(3)
     assert str(game) == '[0, 0, 0, 0, 2, 2, 1]'
 
+def test_choose_move_no_legal_move():
+    board = [0, 0, 3, 2, 1, 0, 0]
+    game = solitaire_mancala.SolitaireMancala()
+    game.set_board(board)
+    assert game.choose_move() == 0
+
 def test_choose_move_board1():
     game = game1()
     assert game.choose_move() == 1
 
 def test_choose_move_board2():
-    board2 = [0, 0, 1, 2, 4, 0, 0]
+    board2 = [0, 0, 4, 2, 1, 0, 0]
     game = solitaire_mancala.SolitaireMancala()
     game.set_board(board2)
     assert game.choose_move() == 4
 
+def test_choose_move_board3():
+    board3 = [0, 0, 0, 0, 2, 1, 2]
+    game = solitaire_mancala.SolitaireMancala()
+    game.set_board(board3)
+    assert game.choose_move() == 1
+
+def test_plan_moves_board1():
+    game = game1()
+    assert game.plan_moves() == [1, 3, 1, 2, 1]
 
