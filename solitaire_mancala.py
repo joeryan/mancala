@@ -76,6 +76,11 @@ class SolitaireMancala(object):
         Note that using a longer legal move would make smaller illegal
         If no legal move, return house zero
         """
+        board = self.board
+        board.reverse()
+        for i in range(1,len(self.board)):
+            if self.board[i] == i:
+                return i
         return 0
 
     def plan_moves(self):

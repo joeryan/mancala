@@ -35,12 +35,24 @@ def test_game_is_not_won():
     assert not game.is_game_won()
 
 def test_game_is_won():
-    board2 = [23, 0, 0, 0, 0, 0, 0]
+    board = [23, 0, 0, 0, 0, 0, 0]
     my_game = solitaire_mancala.SolitaireMancala()
-    my_game.set_board(board2)
+    my_game.set_board(board)
     assert my_game.is_game_won()
 
 def test_apply_move():
     game = game1()
     game.apply_move(3)
     assert str(game) == '[0, 0, 0, 0, 2, 2, 1]'
+
+def test_choose_move_board1():
+    game = game1()
+    assert game.choose_move() == 1
+
+def test_choose_move_board2():
+    board2 = [0, 0, 1, 2, 4, 0, 0]
+    game = solitaire_mancala.SolitaireMancala()
+    game.set_board(board2)
+    assert game.choose_move() == 4
+
+
